@@ -27,7 +27,7 @@
 	var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	var translate = ''
 	msg = msg.toUpperCase();
-		k = key;
+	k = key;
 		for (i=0;i<msg.length;i++) {
 			sym = msg[i]
 			if (letters.indexOf(sym) != -1) {
