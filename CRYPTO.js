@@ -1,17 +1,32 @@
+/*
+**  CRYPTO library Made By Mina R.F.A. ESkANDAR
+**  
+**  This Library Can Do the following:
+**                          Encrypt in 7 , if you count reverse, CYPHERS as well as decryping
+**                          Hash in two hashes including SHA1
+**                          BruteForce Any Cypher
+**                          Caeser Cracker , more cracks are coming so soon 
+**                          
+**
+**
+*/
+
+
+
+
 //CYPHERS
-	function reverse(msg) {
-		msg = msg.toUpperCase()
-		var translate = '';
-		for (var i = msg.length-1; i >= 0; i--) {
-			translate += msg[i]
-		}
-		return translate;
-	}
+	function reverse(value){
+    if(value.length ==1){
+        return value
+    }else{
+        return value[value.length-1] + reverse(value.slice(0,value.length-1))
+    }
+}
 
 	function caeser(msg,key,isEncrypt=true){
 	var letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 	var translate = ''
-		msg = msg.toUpperCase();
+	msg = msg.toUpperCase();
 		k = key;
 		for (i=0;i<msg.length;i++) {
 			sym = msg[i]
@@ -32,6 +47,120 @@
 		return translate;
 
 	}
+
+    function monoAlphabetic(msg,keyPhrase,isEncrypt=true){
+        let letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let filtered = ''
+        msg = msg.toUpperCase()
+        keyPhrase =keyPhrase.toUpperCase()
+        for (var i = 0; i < letters.length; i++) {
+            if (keyPhrase.indexOf(letters[i]) == -1) {
+                 filtered += letters[i]
+            }
+        }
+        let cypherLetter = keyPhrase.toUpperCase() + filtered
+        translate = ''
+        for (var i = 0; i < msg.length; i++) {
+            if (isEncrypt) {
+                translate += letters.indexOf(msg[i]) != -1?cypherLetter[letters.indexOf(msg[i])]:msg[i]
+            }else{
+                translate += cypherLetter.indexOf(msg[i]) != -1?letters[cypherLetter.indexOf(msg[i])]:msg[i]
+            }
+        console.log(cypherLetter)
+        }
+        return translate
+    }
+
+    function atbash(msg,isEncrypt=true) {
+        let letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let reverseLetters = reverse(letters)
+        translate = ''
+        msg = msg.toUpperCase()
+        for (var i = 0; i < msg.length; i++) {
+            if (isEncrypt) {
+                translate += letters.indexOf(msg[i]) != -1?reverseLetters[letters.indexOf(msg[i])]:msg[i]
+            }else{
+                translate += reverseLetters.indexOf(msg[i]) != -1?letters[reverseLetters.indexOf(msg[i])]:msg[i]
+            }
+        }
+        return translate
+    }
+
+    function simpleShiftVigenere(msg,keys,isEncrypt=true) {
+        var letter = 0
+        translate = ''
+        while(letter<msg.length){
+        for(let key of keys){
+            translate += caeser(msg[letter],key,isEncrypt)
+            letter+=1
+            //debugger
+            if (letter>=msg.length) {break;}
+        }
+    }
+    return translate
+}
+    function autoKeyVigenere(msg,keys,isEncrypt=true) {
+        let letter = 0
+        let letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        translate = ''
+        msg = msg.replace(/ /g,'')
+        for(let key of keys){
+            translate += caeser(msg[letter],key,isEncrypt)
+            letter+=1
+            //+debugger
+            if (letter>=msg.length) {break;}
+        }
+        let c = keys.length
+        while(letter<msg.length){
+            let spaceInRange = false
+                c = keys.length
+           
+            if (isEncrypt) {
+                var key = letters.indexOf(msg[letter - c].toUpperCase())
+            }else{
+                var key = letters.indexOf(translate[letter - c].toUpperCase())
+
+            }
+            // debugger
+            translate += caeser(msg[letter],key,isEncrypt)
+            letter++
+
+            }
+
+            for (var i = 0; i < translate.length; i++) {
+                if (i%5===0) {translate = insert(translate,' ',i)}
+            }
+    
+    return translate
+}
+
+
+    function affine(msg,akey,pkey=7,isEncrypt=true) {
+        let letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        let len = letters.length
+        msg = msg.toUpperCase()
+        let translate = ''
+        //console.log('1:'+len+"--"+pkey)
+
+        for (let i = 0; i < msg.length; i++) {
+
+           // let P = 
+        if (isEncrypt) {
+           // console.log('2:'+(extEucAlgorithm(len,pkey).y +len))
+            let C = (letters.indexOf(msg[i])*pkey+akey)%len
+            translate+=letters.indexOf(msg[i]) != -1?letters[C]:msg[i]
+        }else{
+           // console.log('3:'+(extEucAlgorithm(len,pkey).y +len))
+            let P = ((extEucAlgorithm(len,pkey).y +len)*(letters.indexOf(msg[i])-akey))%len
+            while(P<0){P+=26}
+            translate+=letters.indexOf(msg[i]) != -1?letters[P]:msg[i]
+
+        }
+        }
+        return translate
+
+    }
+
 
 	function transposition(msg, key, isEncrypt=true) {
 		//number of cols = key
@@ -67,7 +196,7 @@
 			}
 			return plainText.join('')
 		}else{
-			return 'Error:Type more than 1 letter & make the key in this limit (1:length of message)'
+			console.error('Type more than 1 letter & make the key in this limit (1:length of message)')
 		}
 
 	}
@@ -472,4 +601,106 @@ function SHA1 (msg) {
     }
     var temp = cvt_hex(H0) + cvt_hex(H1) + cvt_hex(H2) + cvt_hex(H3) + cvt_hex(H4);
     return temp.toLowerCase();
+}
+
+//CRACKING METHODS
+
+    function bruteForce(method,target,testSmall=true,testCapital=false,testSpecialCharacters=false,testNum = false,len=1) {
+        console.log('#Intialising Try #'+len)
+        let wordLen = len
+        let charMap = ''
+        if (testSmall) {charMap += 'abcdefghijklmnopqrstuvwxyz'}
+        if (testCapital) {charMap+='ABCDEFGHIJKLMNOPQRSTUVWXYZ'}
+        if (testSpecialCharacters) {charMap+='`~!@#$%^&*()_+-={}[]:";\',./<>?'}
+        if (testNum) {charMap+='0123456789'}          
+            var result = ''
+            var combos = getCombination(wordLen,'',charMap).join(',').split(',')
+
+            for (var r = 0; r < combos.length; r++) {
+                    result = combos[r]
+                
+                //console.log(`trying '${result}'... => ${method(result)} ? ${target}`)
+                if (method(result) == target) {
+                console.log(`Match Found! ${result} => ${method(result)} === ${target}...`)
+                 return result
+                }
+                if ((result).length==0) {
+                    //console.log(`BROKEN`)
+                    return 0
+                }
+            }
+            bruteForce(method,target,testSmall,testCapital,testSpecialCharacters,testNum,wordLen+1)
+            //}
+    }
+
+    function caeserCracker(target,key = 1,baseArr=[]){
+        possibles = baseArr
+        result = caeser(target,key)
+        if (key <= 26) {
+            possibles.push(result)
+            caeserCracker(target,key+1,possibles)
+        }
+        else{
+            console.log(possibles)
+        }
+            return possibles
+    }
+//}
+
+
+//some Math May be needed
+Math.factorial = function (num) {
+    if (num < 0) 
+        return -1;
+  else if (num == 0) 
+      return 1;
+  else {
+      return (num * Math.factorial(num - 1));
+  }
+}
+
+Math.comination = function (n,k) {
+   return (Math.factorial(n))/(Math.factorial(k)*Math.factorial(n-k))
+}
+function getCombination(depth, baseString, arrLetters) {
+    var returnValue = [];
+    for (var i = 0; i < arrLetters.length; i++) {
+        returnValue .push(depth == 1 ?baseString + arrLetters[i] : getCombination(depth - 1, baseString + arrLetters[i], arrLetters));
+    }
+        return returnValue;
+}
+
+function extEucAlgorithm(x,y){
+    let A = [x,y]
+    let Q = []
+    let X = []
+    var num = 0
+    while(A[A.length-1]!=0)
+    {
+        A.push(A[num]%A[num+1])
+        num++
+    }
+    num = 0
+
+    while(A[num]/A[num+1]!=1/0)
+    {
+        Q[num+1] = Math.floor(A[num]/A[num+1])
+        num++
+    }
+    X[num] = 0
+    X[num-1] = 1
+    num -=2
+    while(!X[0]){
+        X[num] = Q[num+1]*X[num+1]+X[num +2]
+        num--
+    }
+
+
+    return {x:X[1],y:-1*X[0]}
+
+}
+
+function insert(mainStr,insertStr='',pos = 0){
+    //debugger
+    return mainStr.slice(0,pos) + insertStr + mainStr.slice(pos)
 }
