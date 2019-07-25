@@ -1,7 +1,14 @@
 # CRYPTO
 a Simple JavaScript Library To help crypting easly. 
 
-It contains reverse, Caeser, trasposition, 32bit Integer hash code, SHA1 hash
+It contains Cyphers like: reverse, Caeser, trasposition,
+                          monoAlphabetic. atbash , affine
+                          simpleShiftVigenere, autoKeyVigenere
+                          
+It Also contains some hashes like:
+                          32bit Integer hash code, SHA1 hash
+The Library Also contains: BruteForce That will work for Any hash or Cypher
+                            Caeser Cracker More Crackers are coming soon
 # How To Use ...
 
 
@@ -38,6 +45,17 @@ It contains reverse, Caeser, trasposition, 32bit Integer hash code, SHA1 hash
    
               transposition('This is a Secret', 7) => 'T ehati sS eicsr'
               transposition('T ehati sS eicsr', 7, false) => 'This is a Secret'
+              
+## monoAlphabetic:
+  monoAlphabetic(msg,keyPhrase,isEncrypt [optional] ) : isEncrypt default value is true if false it will decrypt instead
+  
+  MonoAlphabetic Takes a Secert phrase instead of a number Here are some Examples:
+  
+         monoAlphabetic('HelloWorld','secrt') => 'DTIILWLOIR'
+         monoAlphabetic('DTIILWLOIR','secrt' , false) =>  'HelloWorld'
+         
+         
+# Hashes:
 ## 32bit Integer:
    This is a hash which means It can not be decrypted by an Algorithm
   
