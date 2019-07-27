@@ -54,7 +54,7 @@ The Library Also contains: BruteForce That will work for Any hash or any cypher 
   
          monoAlphabetic('HelloWorld','secrt') => 'DTIILWLOIR'
          monoAlphabetic('DTIILWLOIR','secrt' , false) =>  'HELLOWORLD'
-**NOTE: MAKE SURE THE KEY PHRASE DOES NOT HAS A REPEATING CHARACHTER. e.g. 'secret' will not work because theere are 2 'e's**        
+**NOTE: MAKE SURE THE KEY PHRASE DOES NOT HAS A REPEATING CHARACHTER. e.g. 'secret' will not work because there are 2 'e's**        
       
 ## atbash:
   atbash(msg,isEncrypt [optional]) : isEncrypt default value is true if false it will decrypt instead
