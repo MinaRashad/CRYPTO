@@ -53,7 +53,7 @@ The Library Also contains: BruteForce That will work for Any hash or any cypher 
   MonoAlphabetic Takes a Secert phrase instead of a number Here are some Examples:
   
          monoAlphabetic('HelloWorld','secrt') => 'DTIILWLOIR'
-         monoAlphabetic('DTIILWLOIR','secrt' , false) =>  'HelloWorld'
+         monoAlphabetic('DTIILWLOIR','secrt' , false) =>  'HELLOWORLD'
 **NOTE: MAKE SURE THE KEY PHRASE DOES NOT HAS A REPEATING CHARACHTER. e.g. 'secret' will not work because theere are 2 'e's**        
       
 ## atbash:
