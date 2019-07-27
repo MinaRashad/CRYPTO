@@ -18,6 +18,7 @@ The Library Also contains: BruteForce That will work for Any hash or any cypher 
  Example:
               
               reverse('hello') => 'olleh'
+              reverse('olleh') => 'hello'
  
  
 ## Caeser:
@@ -63,14 +64,23 @@ The Library Also contains: BruteForce That will work for Any hash or any cypher 
           atbash('Hello World') => "SVOOL DLIOW"
           atbash('SVOOL DLIOW', false) => 'HELLO WORLD'
           
-## simpleShiftVigenere:
+## simple-Shift-Vigenere:
   simpleShiftVigenere(msg,keys,isEncrypt [optional]) : isEncrypt default value is true if false it will decrypt instead
   
-  simpleShiftVigenere is a more safier version of caeser , It takes more that one key, then shifts each character with it after keys run out it reuses them.
+  simpleShiftVigenere is a more safier version of caeser , It takes more than one key, then shifts each character with it after keys run out it reuses them.
   
           simpleShiftVigenere('hello World' , [5,11,0,0,13]) => 'MPLLB HORYI'
           simpleShiftVigenere('MPLLB HORYI' , [5,11,0,0,13],false) => 'HELLO WORLD'
 
+## auto-Key-Vigenere:
+  autoKeyVigenere(msg, keys, isEncrypt [optional]) : isEncrypt default value is true if false it will decrypt instead
+  
+  auto-Key-Vigenere is the one of the safest cyphers . autoKeyVigenere , like simpleShift , Take more than one key but instead of repeating Keys, It uses the Original message as a key. 
+  **Then It return it as some blocks of length of 4 as an extra layar of security which means decrypted text can be unreadable if you do not know what to look for**
+  
+          autoKeyVigenere('Super Secret Message',[12,4,0,16]) => ' EYPU JMTG IWXO VWLM KW'
+          autoKeyVigenere( 'EYPU JMTG IWXO VWLM KW',[12,4,0,16],false) => 'SUPE RSEC RETM ESSA GE'
+          
 
 # Hashes:
 ## 32bit Integer:
