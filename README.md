@@ -7,7 +7,7 @@ It contains Cyphers like: reverse, Caeser, trasposition,
                           
 It Also contains some hashes like:
                           32bit Integer hash code, SHA1 hash
-The Library Also contains: BruteForce That will work for Any hash or Cypher
+The Library Also contains: BruteForce That will work for Any hash or any cypher that take one value like 'atbash'
                             Caeser Cracker More Crackers are coming soon
 # How To Use ...
 
@@ -53,8 +53,25 @@ The Library Also contains: BruteForce That will work for Any hash or Cypher
   
          monoAlphabetic('HelloWorld','secrt') => 'DTIILWLOIR'
          monoAlphabetic('DTIILWLOIR','secrt' , false) =>  'HelloWorld'
-         
-         
+**NOTE: MAKE SURE THE KEY PHRASE DOES NOT HAS A REPEATING CHARACHTER. e.g. 'secret' will not work because theere are 2 'e's**        
+      
+## atbash:
+  atbash(msg,isEncrypt [optional]) : isEncrypt default value is true if false it will decrypt instead
+  
+  atbash will take each charachter and map it to the charachters in reverse
+  
+          atbash('Hello World') => "SVOOL DLIOW"
+          atbash('SVOOL DLIOW', false) => 'HELLO WORLD'
+          
+## simpleShiftVigenere:
+  simpleShiftVigenere(msg,keys,isEncrypt [optional]) : isEncrypt default value is true if false it will decrypt instead
+  
+  simpleShiftVigenere is a more safier version of caeser , It takes more that one key, then shifts each character with it after keys run out it reuses them.
+  
+          simpleShiftVigenere('hello World' , [5,11,0,0,13]) => 'MPLLB HORYI'
+          simpleShiftVigenere('MPLLB HORYI' , [5,11,0,0,13],false) => 'HELLO WORLD'
+
+
 # Hashes:
 ## 32bit Integer:
    This is a hash which means It can not be decrypted by an Algorithm
