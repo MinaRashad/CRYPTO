@@ -99,3 +99,49 @@ The Library Also contains: BruteForce That will work for Any hash or any cypher 
   Example:
               
               SHA1('Super Imporant Text') => '000a7b9aeba75024c4d02b1e61d098867857459a'
+              
+              
+# Cracking:
+  this part is used to crack more will be add later
+  
+## Caeser-Cracker
+   caeserCracker(target,key = 1,baseArr=[]) the target is the encrypted text, this will show all possible using a bruteforce method using all possible 27 keys
+   
+   **DO NOT CHANGE EITHER THE key NOR baseArr to work as expected**
+   
+   Example:
+    
+           caeserCracker('OQQP') =>
+   
+            [
+            "PRRQ", "QSSR", "RTTS", "SUUT", "TVVU",
+            "UWWV", "VXXW", "WYYX", "XZZY", "YAAZ",
+            "ZBBA", "ACCB", "BDDC", "CEED", "DFFE",
+            "EGGF", "FHHG", "GIIH", "HJJI", "IKKJ",
+            "JLLK", "KMML", "LNNM", "MOON", "NPPO", "OQQP"
+            ]                        ^^^^
+                                this is the decrypted text
+                                
+# BruteForce
+  **This function can only hack functions that take one required argument e.g. SHA1(msg), atbash(msg, isEncrypt [optional])**
+  The function will try to Encrypt(or hash) every possible combination until the target is equal to the encrypted combination
+##  How to use
+
+  bruteForce(method,target,testSmall=true,testCapital=false,testSpecialCharacters=false,testNum = false,len=1)
+  
+  **method**: you will put the function which was used to encrypt/hash, in this example we will use SHA1
+  **target**: you will put the encrypted text , in the example we will use this hash "9d989e8d27dc9e0ec3389fc855f142c3d40f0c50"
+  **Testsmall**: if you want it to test small charachters , by default it will check small letters only except if you change the following
+  **testCapital**: if you want it to check capital letters
+  **testSpecialCharachters**: like {* ,& ,^ ,% , ..etc }
+  **testNum**: will check numbers
+  **len**: this is the starting length change it if you want to start from a bigger
+  **NOTE** the more test elements you make true the slower it will come
+  
+  Examples:
+  
+          Comming soon
+  
+   
+   
+   
