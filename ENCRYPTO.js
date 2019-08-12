@@ -622,14 +622,16 @@ function SHA1 (msg) {
                 //console.log(`trying '${result}'... => ${method(result)} ? ${target}`)
                 if (method(result) == target) {
                 console.log(`Match Found! ${result} => ${method(result)} === ${target}...`)
-                 return result
+                return result
+                
                 }
                 if ((result).length==0) {
                     //console.log(`BROKEN`)
                     return 0
                 }
             }
-            bruteForce(method,target,testSmall,testCapital,testSpecialCharacters,testNum,wordLen+1)
+            
+            return bruteForce(method,target,testSmall,testCapital,testSpecialCharacters,testNum,wordLen+1)
             //}
     }
 
@@ -639,9 +641,6 @@ function SHA1 (msg) {
         if (key <= 26) {
             possibles.push(result)
             caeserCracker(target,key+1,possibles)
-        }
-        else{
-            console.log(possibles)
         }
             return possibles
     }
