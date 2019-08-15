@@ -130,18 +130,25 @@ The Library Also contains: BruteForce That will work for Any hash or any cypher 
   bruteForce(method,target,testSmall=true,testCapital=false,testSpecialCharacters=false,testNum = false,len=1)
   
   **method**: you will put the function which was used to encrypt/hash, in this example we will use SHA1
+  
   **target**: you will put the encrypted text , in the example we will use this hash "9d989e8d27dc9e0ec3389fc855f142c3d40f0c50"
+  
   **Testsmall**: if you want it to test small charachters , by default it will check small letters only except if you change the following
+  
   **testCapital**: if you want it to check capital letters
+  
   **testSpecialCharachters**: like {* ,& ,^ ,% , ..etc }
+  
   **testNum**: will check numbers
+  
   **len**: this is the starting length change it if you want to start from a bigger
+  
   **NOTE** the more test elements you make true the slower it will come
   
   Examples:
   
-          Comming soon
-  
+          bruteForce(SHA1,'9d989e8d27dc9e0ec3389fc855f142c3d40f0c50') => 'cat'
+          bruteForce(SHA1,"2bdb2e4ca4081ac3953f358521ff3396fa06ee4a",false,false,true,true) =>'1+1=2'
    
    
    
