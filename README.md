@@ -150,7 +150,10 @@ The Library Also contains: BruteForce That will work for Any hash or any cypher 
           bruteForce(SHA1,'9d989e8d27dc9e0ec3389fc855f142c3d40f0c50') => 'cat'
           bruteForce(SHA1,"2bdb2e4ca4081ac3953f358521ff3396fa06ee4a",false,false,true,true) =>'1+1=2'
           
-   **WARNING: MAKE SURE NOT TRY CRACK MORE THAN YOUR COMPUTER LIMITS For Example, Second Example TAKES LOTS OF TIME TO CHECK**
+   **WARNING: MAKE SURE NOT TRY CRACK MORE THAN YOUR COMPUTER LIMITS For Example, Second Example TAKES LOTS OF TIME TO CHECK Especially when it is continuelly hashing the combination with SHA1**
    
+   A more advanced Example to Check for 32bit number hash, An Example of how to use a function made in the arguments
+   
+          bruteForce((str)=>{return str.hashCode()}, 3351631) => 'mina'
    
    
