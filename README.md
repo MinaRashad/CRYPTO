@@ -149,6 +149,8 @@ The Library Also contains: BruteForce That will work for Any hash or any cypher 
   
           bruteForce(SHA1,'9d989e8d27dc9e0ec3389fc855f142c3d40f0c50') => 'cat'
           bruteForce(SHA1,"2bdb2e4ca4081ac3953f358521ff3396fa06ee4a",false,false,true,true) =>'1+1=2'
+          
+   **WARNING: MAKE SURE NOT TRY CRACK MORE THAN YOUR COMPUTER LIMITS For Example, Second Example TAKES LOTS OF TIME TO CHECK**
    
    
    
