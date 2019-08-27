@@ -1,4 +1,4 @@
-# CRYPTO
+# ENCRYPTO
 a Simple JavaScript Library To help crypting easly. 
 
 It contains Cyphers like: reverse, Caeser, trasposition,
