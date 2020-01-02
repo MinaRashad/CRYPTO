@@ -1,7 +1,7 @@
 # ENCRYPTO
 a Simple JavaScript Library To help crypting easly. 
 
-It contains Cyphers like: reverse, Caeser, trasposition,
+It contains Cyphers like: reverse, Caeser, transposition,
                           monoAlphabetic. atbash , affine
                           simpleShiftVigenere, autoKeyVigenere
                           
